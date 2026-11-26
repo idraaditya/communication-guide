@@ -6,9 +6,10 @@ export default defineConfig({
   lang: 'en-US',
   lastUpdated: true,
   cleanUrls: true,
+  base: '/communication-guide/',
   
   themeConfig: {
-    logo: '/logo.svg',
+    logo: '/communication-guide/logo.svg',
     siteTitle: 'Comm Guide',
     
     nav: [
@@ -96,7 +97,7 @@ export default defineConfig({
     },
     
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/yourusername/communication-guide' },
+      { icon: 'github', link: 'https://github.com/idraaditya/communication-guide' },
     ],
     
     footer: {
@@ -109,7 +110,7 @@ export default defineConfig({
     },
     
     editLink: {
-      pattern: 'https://github.com/yourusername/communication-guide/edit/main/docs/:path',
+      pattern: 'https://github.com/idraaditya/communication-guide/edit/main/docs/:path',
       text: 'Edit this page on GitHub',
     },
   },
