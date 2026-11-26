@@ -1,0 +1,5 @@
+Category,Bandwidth,Stability,Range,Protocols,Best For
+"Low BW, Lossy, Long Range",< 5 kbps,High loss (10-50%),1-50+ km,"LoRaMesher, Meshtastic, BATMAN-ADV","Sensor networks, off-grid comms"
+"Low BW, Stable",250 kbps - 1 Mbps,Low loss (<1%),10-100m,"OpenThread, Zigbee, BLE Mesh","Home automation, Matter"
+"High BW, Lossy",1-50 Mbps,Medium loss (1-10%),100m-1km,"BATMAN-ADV, Babel, 802.11s","WiFi mesh, mobile ad-hoc"
+"High BW, Stable",100 Mbps - 1 Gbps,Very low loss (<0.1%),LAN/WAN,"WireGuard, BIRD2, cjdns, Yggdrasil","VPN, enterprise routing, overlays"

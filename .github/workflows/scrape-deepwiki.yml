@@ -1,0 +1,86 @@
+name: Scrape DeepWiki
+
+on:
+  schedule:
+    - cron: '0 2 * * 0'  # Weekly on Sunday at 2 AM UTC
+  workflow_dispatch:
+    inputs:
+      max_pages:
+        description: 'Max pages per repository'
+        required: false
+        default: '5'
+        type: string
+      delay:
+        description: 'Base delay between requests in seconds'
+        required: false
+        default: '30'
+        type: string
+
+permissions:
+  contents: write
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+      
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+      
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+      
+      - name: Run DeepWiki scraper
+        continue-on-error: true
+        run: |
+          python scripts/scrape_deepwiki.py --max-pages ${{ github.event.inputs.max_pages || 5 }} --delay ${{ github.event.inputs.delay || 30 }}
+      
+      - name: Extract protocol rules
+        continue-on-error: true
+        run: |
+          python scripts/extract_rules.py
+      
+      - name: Generate comparison matrices
+        continue-on-error: true
+        run: |
+          python scripts/generate_comparison.py
+      
+      - name: Commit changes
+        if: success() || failure()
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "chore: update scraped content and extracted rules [skip ci]"
+          file_pattern: docs/scraped/** docs/rules/** data/*.csv
+          commit_user_name: github-actions[bot]
+          commit_user_email: github-actions[bot]@users.noreply.github.com
+          commit_author: github-actions[bot] <github-actions[bot]@users.noreply.github.com>
+      
+      - name: Report status
+        if: always()
+        run: |
+          if [ -f docs/scraped/scrape_summary.json ]; then
+            echo "Scraping completed successfully"
+            cat docs/scraped/scrape_summary.json
+          else
+            echo "Scraping had issues but continuing..."
+          fi
+
+  notify:
+    needs: scrape
+    runs-on: ubuntu-latest
+    if: always()
+    steps:
+      - name: Report final status
+        run: |
+          echo "Weekly DeepWiki scrape completed. Check workflow logs for details."

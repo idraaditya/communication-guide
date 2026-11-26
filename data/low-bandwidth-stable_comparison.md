@@ -1,0 +1,32 @@
+# Low Bandwidth Stable Protocol Comparison
+
+| Attribute | OpenThread | Zigbee 3.0 | BLE Mesh |
+|---|---|---|---|
+| Architecture | IPv6/6LoWPAN + RPL | AODV + ZCL | Managed Flood + Friendship |
+| Layer | L3.5 (Thread) | L3.5 (Zigbee) | L3.5 (BLE Mesh) |
+| Routing Algorithm | RPL (DODAG) | AODV + Tree | Managed Flooding |
+| Metric | OF0 (hops) / MRHOF (ETX) | Path cost | TTL + Relay count |
+| Max Data Rate | 250 kbps | 250 kbps | 1-2 Mbps (PHY) |
+| Typical Range | 10-100m | 10-100m | 10-100m |
+| Encryption | AES-CCM (MAC) + DTLS | AES-128-CCM | AES-CCM |
+| Authentication | DTLS + PSKc | Link/Net keys | ECDH Provisioning |
+| Key Management | Commissioner | Trust Center | Provisioner |
+| Forward Secrecy | Yes (session) | Yes (session) | Yes (session) |
+| NAT Traversal | Border Router (NAT64/DNS64) | Gateway needed | Proxy (GATT) |
+| Roaming Support | Good (Thread 1.2+) | Limited | Limited |
+| Multicast | MPL (RFC 7731) | Group addressing | Group/Virtual addresses |
+| Fragmentation | 6LoWPAN | APS | SAR |
+| Security Level | High | High | High |
+| Maturity | Thread 1.4 Certified | Zigbee 3.0 (2018) | Mesh 1.0.1 (2019) |
+| License | BSD-3 | Proprietary/GPL | Apache-2.0 |
+| ESP32 Support | ✅ ESP32-H2/C6 | ✅ ESP32-H2/C6 | ✅ ESP32/ESP32-S3 |
+| Best For | Matter, IPv6, border router | HA ecosystem, Green Power | Phone provisioning, lighting, no border router |
+
+
+## Quick Selection Guide
+
+| Requirement | Recommended Protocol |
+|-------------|---------------------|
+| Matter + IPv6 + border router | OpenThread |
+| HA ecosystem + Green Power | Zigbee 3.0 |
+| Phone provisioning + no border router | BLE Mesh |

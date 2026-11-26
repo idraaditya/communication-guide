@@ -1,0 +1,20 @@
+Attribute,BATMAN-ADV,Babel,802.11s (HWMP)
+Architecture,L2 Mesh (Kernel),Distance Vector (L3),L2 Mesh (MAC)
+Layer,L2,L3,L2
+Routing Algorithm,OGM Flooding,DV + ETX,HWMP (Reactive)
+Metric,TQ (Transmission Quality),ETX (Expected TX Count),Airtime Link Metric
+Max Data Rate,100+ Mbps (WiFi),100+ Mbps (WiFi),100+ Mbps (WiFi)
+Typical Range,100m-1km (WiFi),100m-1km (WiFi),100m-1km (WiFi)
+Encryption,None (L2),None,AES-CCMP/GCMP-256
+Authentication,None,None,SAE (WPA3) / PSK
+Key Management,N/A,N/A,4-way handshake
+Forward Secrecy,N/A,N/A,Yes (session)
+NAT Traversal,N/A,N/A,N/A
+Roaming Support,Excellent (L2),Good,Standard (802.11r/k/v)
+Multicast,MCAST optimization,Native (MPL-like),IGMP/MLD Snooping
+Fragmentation,Built-in,IP,802.11
+Security Level,Low (needs IPsec),Low (needs IPsec),High (WPA3)
+Maturity,Stable (mainline kernel),RFC 8966,IEEE 802.11s-2011
+License,GPL-2.0,MIT/ISC,GPL-2.0 (Linux)
+ESP32 Support,❌ Linux host (OpenWrt),✅ ESP32-S3 (babeld),✅ ESP32-S3 (mac80211)
+Best For,"L2 transparency, roaming, VLAN","Fast convergence, dual-stack, policy routing","Standard WiFi mesh, WPA3"

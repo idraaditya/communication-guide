@@ -1,0 +1,23 @@
+{
+  "name": "communication-guide",
+  "version": "1.0.0",
+  "description": "Comprehensive Communication Protocols Guide for Embedded Devices",
+  "type": "module",
+  "scripts": {
+    "dev": "vitepress dev docs",
+    "build": "vitepress build docs",
+    "preview": "vitepress preview docs",
+    "scrape": "python scripts/scrape_deepwiki.py",
+    "extract-rules": "python scripts/extract_rules.py",
+    "generate-comparison": "python scripts/generate_comparison.py",
+    "validate-examples": "python scripts/validate_examples.py",
+    "pdf": "pandoc docs/**/*.md -o communication-guide.pdf --toc --pdf-engine=weasyprint"
+  },
+  "dependencies": {
+    "vue": "^3.4.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "vitepress": "^1.6.4"
+  }
+}

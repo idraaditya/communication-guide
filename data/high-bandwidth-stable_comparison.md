@@ -1,0 +1,32 @@
+# High Bandwidth Stable Protocol Comparison
+
+| Attribute | WireGuard | BIRD2 (OSPF/BGP) | cjdns | Yggdrasil |
+|---|---|---|---|---|
+| Architecture | L3 VPN (Kernel/Userspace) | Routing Daemon (L3) | Overlay (L2.5/L3) | Overlay (L3) |
+| Layer | L3 | L3 (Control Plane) | L2.5/L3 | L3 |
+| Routing Algorithm | Cryptokey Routing | OSPF (SPF) / BGP (Path Vector) | DHT + Switch Labels | DHT + Tree + Shortcuts |
+| Metric | Static (AllowedIPs) | OSPF Cost / BGP Attributes | Latency/Loss (DHT) | Latency (Tree + Shortcuts) |
+| Max Data Rate | 1-10 Gbps | Control plane only | 100-500 Mbps | 100-500 Mbps |
+| Typical Range | Internet/WAN | Internet/Enterprise | Internet/Overlay | Internet/Overlay |
+| Encryption | ChaCha20-Poly1305 | IPsec (separate) | Curve25519/ChaCha20 | Curve25519/ChaCha20 |
+| Authentication | Noise_IK (1-RTT) | MD5/SHA/TCP-AO | CryptoKey (self-cert) | CryptoKey (self-cert) |
+| Key Management | Static keys + PSK | Manual/Keychain | Self-certifying | Self-certifying |
+| Forward Secrecy | Yes (1-RTT) | IPsec only | Yes (ephemeral DH) | Yes (ephemeral DH) |
+| NAT Traversal | Built-in (keepalive) | No | Built-in (DHT) | Built-in (DHT) |
+| Roaming Support | Seamless | Protocol-dependent | DHT-based | DHT-based |
+| Multicast | No | OSPF: Yes, BGP: No | No | No |
+| Fragmentation | IP | IP | Built-in | IP |
+| Security Level | Very High | Medium (needs IPsec) | High | High |
+| Maturity | Stable (Linux 5.6+) | Production ISP grade | Beta | Beta |
+| License | GPL-2.0 | GPL-2.0 | GPL-3.0 | GPL-3.0 |
+| ESP32 Support | ✅ ESP32-S3 (WireGuard-Go) | ❌ Linux host | ❌ Linux host | ❌ (cross-platform) |
+| Best For | Site-to-site, road warrior, simple config | Enterprise/ISP routing, policy | Encrypted overlay, no PKI | Encrypted overlay, cross-platform |
+
+
+## Quick Selection Guide
+
+| Requirement | Recommended Protocol |
+|-------------|---------------------|
+| Site-to-site VPN + road warrior | WireGuard |
+| Enterprise/ISP routing + policy | BIRD2 (OSPF/BGP) |
+| Encrypted overlay + no PKI | cjdns / Yggdrasil |
