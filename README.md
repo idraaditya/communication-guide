@@ -1,14 +1,14 @@
 # Communication Protocols Guide for Embedded Devices
 
-[![Build](https://github.com/yourusername/communication-guide/actions/workflows/build.yml/badge.svg)](https://github.com/yourusername/communication-guide/actions/workflows/build.yml)
-[![Scrape](https://github.com/yourusername/communication-guide/actions/workflows/scrape.yml/badge.svg)](https://github.com/yourusername/communication-guide/actions/workflows/scrape.yml)
+[![Build](https://github.com/idraaditya/communication-guide/actions/workflows/build.yml/badge.svg)](https://github.com/idraaditya/communication-guide/actions/workflows/build.yml)
+[![Scrape](https://github.com/idraaditya/communication-guide/actions/workflows/scrape.yml/badge.svg)](https://github.com/idraaditya/communication-guide/actions/workflows/scrape.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 A comprehensive, automatically updated guide for selecting, configuring, and deploying communication protocols on embedded devices (ESP32, ESP32-S3) across four bandwidth/stability categories.
 
 ## 📖 Live Documentation
 
-**🌐 [https://yourusername.github.io/communication-guide/](https://yourusername.github.io/communication-guide/)**
+**🌐 [https://idraaditya.github.io/communication-guide/](https://idraaditya.github.io/communication-guide/)**
 
 ## 🎯 Quick Start
 
@@ -79,7 +79,7 @@ This guide stays current by automatically scraping documentation from:
 
 ```bash
 # Clone
-git clone https://github.com/yourusername/communication-guide.git
+git clone https://github.com/idraaditya/communication-guide.git
 cd communication-guide
 
 # Install Node dependencies
